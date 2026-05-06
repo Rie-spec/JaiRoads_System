@@ -16,101 +16,45 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ========================================= */
-        /* DIRECTORY LAYOUT                          */
-        /* ========================================= */
-        .lgu-grid {
-            display: grid;
-            grid-template-columns: 2.5fr 2.5fr 1fr; 
-            gap: 16px;
-            align-items: center;
-        }
-
-        .records-head.lgu-grid {
-            padding: 20px 30px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .lgu-row {
-            padding: 14px 30px;
-            border-bottom: 1px solid #f1f5f9;
-            transition: all 0.2s ease;
-        }
-
+        /* Directory Layout */
+        .lgu-grid { display: grid; grid-template-columns: 2.5fr 2.5fr 1fr; gap: 16px; align-items: center; }
+        .records-head.lgu-grid { padding: 20px 30px; border-bottom: 1px solid #e2e8f0; }
+        .lgu-row { padding: 14px 30px; border-bottom: 1px solid #f1f5f9; transition: all 0.2s ease; }
         .lgu-row:hover { background-color: #f8fafc; }
-
-        .lgu-info-cell {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .lgu-info-cell { display: flex; align-items: center; gap: 12px; }
+        
+        .lgu-icon-wrapper { 
+            width: 38px; height: 38px; 
+            background: #eeefff; color: #5d5fef; 
+            border-radius: 12px; display: flex; 
+            align-items: center; justify-content: center;
+            flex-shrink: 0;
         }
 
-        .lgu-icon-wrapper {
-            width: 38px; height: 38px;
-            background: #eeefff; color: #5d5fef;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .lgu-main-text { font-weight: 700; color: #1e293b; font-size: 14px; }
-        .lgu-sub-text { font-weight: 500; color: #64748b; font-size: 14px; }
-
-        /* FIXED VIEW BUTTON (Right Aligned & Not Stretched) */
+        /* Fixed View Button */
         .view-btn {
-            height: 38px; 
-            width: 110px;
+            height: 38px; width: 110px;
             border: 1px solid #e2e8f0; border-radius: 12px;
             background: white; color: #5d5fef;
             font-weight: 700; font-size: 11px;
             display: flex; align-items: center; justify-content: center; 
-            gap: 8px;
-            cursor: pointer; 
-            justify-self: end; /* Pushes button to right of grid cell */
+            gap: 8px; cursor: pointer; justify-self: end;
             transition: all 0.2s ease;
         }
+        .view-btn:hover { background: #5d5fef; color: white; border-color: #5d5fef; box-shadow: 0 8px 20px rgba(93, 95, 239, 0.2); }
 
-        .view-btn:hover {
-            background: #5d5fef; color: white;
-            box-shadow: 0 8px 20px rgba(93, 95, 239, 0.2);
-            border-color: #5d5fef;
-        }
-
-        /* ========================================= */
-        /* MODAL & DETAIL PANE                       */
-        /* ========================================= */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(4px);
-            display: none; align-items: center; justify-content: center; z-index: 9999;
-        }
-
-        .modal-card {
-            background: white; width: 100%; max-width: 680px;
-            border-radius: 32px; padding: 35px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
-        }
-
+        /* Modal & Detail Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30, 41, 59, 0.3); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .modal-card { background: white; width: 100%; max-width: 680px; border-radius: 32px; padding: 35px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
         .sect { margin-bottom: 25px; }
-        .secthead {
-            display: flex; align-items: center; gap: 8px;
-            color: #94a3b8; font-size: 11px; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            margin-bottom: 12px;
-        }
-
+        .secthead { display: flex; align-items: center; gap: 8px; color: #94a3b8; font-size: 11px; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; }
         .lbl { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        
         .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-        .data-box {
-            padding: 12px 16px; background: #f8fafc; border-radius: 14px;
-            border: 1px solid #f1f5f9; font-weight: 700; color: #1e293b; font-size: 14px;
-        }
-
-        .project-card {
-            background: #f8fafc; padding: 14px 18px; border-radius: 16px;
-            border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;
-        }
+        .data-box { padding: 12px 16px; background: #f8fafc; border-radius: 14px; border: 1px solid #f1f5f9; font-weight: 700; color: #1e293b; font-size: 14px; }
+        
+        /* Bridge Cards */
+        .item-card { background: #f8fafc; padding: 12px 18px; border-radius: 16px; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .badge { font-size: 9px; font-weight: 900; background: #eeefff; color: #5d5fef; padding: 5px 10px; border-radius: 10px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -129,7 +73,7 @@
             <section class="filter-shell">
                 <div class="filter-search">
                     <i class="filter-search-icon" data-lucide="search"></i>
-                    <input type="text" id="lguSearchInput" placeholder="Search by municipality or head of LGU...">
+                    <input type="text" id="lguSearchInput" placeholder="Search by municipality or mayor...">
                 </div>
                 <div class="filter-actions">
                     <button class="refresh-btn" id="refreshBtn" type="button"><i data-lucide="rotate-cw"></i></button>
@@ -142,10 +86,7 @@
                     <div>Head of LGU</div>
                     <div style="text-align: right; padding-right: 20px;">Action</div>
                 </div>
-
-                <div class="records-body" id="lguTableBody">
-                    </div>
-
+                <div class="records-body" id="lguTableBody"></div>
                 <div class="records-footer">
                     <p class="records-note">Showing <span id="lguCount">0</span> Registered LGUs</p>
                 </div>
@@ -159,7 +100,7 @@
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <div class="lgu-icon-wrapper" style="width: 52px; height: 52px; border-radius: 18px;"><i data-lucide="building-2"></i></div>
                     <div>
-                        <h1 style="font-weight: 800; font-size: 24px; color: #1e293b; letter-spacing: -0.02em;" id="detMuni">---</h1>
+                        <h1 style="font-weight: 800; font-size: 24px; color: #1e293b;" id="detMuni">---</h1>
                         <p style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">LGU Profile Overview</p>
                     </div>
                 </div>
@@ -179,15 +120,19 @@
             </div>
 
             <div class="sect">
+                <div class="secthead"><i data-lucide="users"></i><span>Authorized Engineers</span></div>
+                <div id="associatedEngineers" style="max-height: 120px; overflow-y: auto;">
+                    </div>
+            </div>
+
+            <div class="sect">
                 <div class="secthead"><i data-lucide="wrench"></i><span>Maintenance Projects Involved</span></div>
-                <div id="associatedProjects" style="display: flex; flex-direction: column; gap: 10px; max-height: 180px; overflow-y: auto;">
+                <div id="associatedProjects" style="max-height: 120px; overflow-y: auto;">
                     </div>
             </div>
 
             <div style="display: flex; justify-content: flex-end; margin-top: 30px; padding-top: 20px; border-top: 1px solid #f1f5f9;">
-                <button type="button" onclick="closeModal()" class="primary-btn" style="width: auto; padding: 12px 35px;">
-                    CLOSE PROFILE
-                </button>
+                <button type="button" onclick="closeModal()" class="primary-btn" style="width: auto; padding: 12px 35px;">CLOSE PROFILE</button>
             </div>
         </div>
     </div>
@@ -209,25 +154,34 @@
         const db = getFirestore(app);
         let masterLguList = [];
 
-        // 1. Fetch LGUs
+        // XSS Protection Helper
+        const escapeHTML = (str) => {
+            if (!str) return '---';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        };
+
+        // 1. Fetch LGUs in Real-time
         onSnapshot(collection(db, "lgus"), (snapshot) => {
             masterLguList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             renderTable(masterLguList);
         });
 
-        // 2. Render Table with "No Record Found" Logic
+        // 2. Render Table with XSS Guard & Empty State
         window.renderTable = function(data) {
             const body = document.getElementById('lguTableBody');
             const countDisplay = document.getElementById('lguCount');
 
             if (data.length === 0) {
                 body.innerHTML = `
-                    <div style="padding: 80px 20px; text-align: center; background: #fff; border-radius: 0 0 24px 24px;">
-                        <i data-lucide="search-x" style="width: 48px; height: 48px; color: #cbd5e1; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;"></i>
-                        <h3 style="color: #1e293b; font-weight: 800; font-size: 18px; margin-bottom: 4px;">No Record Found</h3>
-                        <p style="color: #94a3b8; font-size: 14px;">We couldn't find any results matching your search.</p>
-                    </div>
-                `;
+                    <div style="padding: 60px; text-align: center; color: #94a3b8;">
+                        <i data-lucide="search-x" style="margin-bottom:10px;"></i>
+                        <p>No Record Found</p>
+                    </div>`;
                 countDisplay.innerText = "0";
                 lucide.createIcons();
                 return;
@@ -237,10 +191,10 @@
                 <div class="lgu-row lgu-grid">
                     <div class="lgu-info-cell">
                         <div class="lgu-icon-wrapper"><i data-lucide="building-2"></i></div>
-                        <span class="lgu-main-text">${lgu.municipality || '---'}</span>
+                        <span class="lgu-main-text">${escapeHTML(lgu.municipality)}</span>
                     </div>
                     <div class="lgu-info-cell">
-                        <span class="lgu-sub-text">${lgu.headName || '---'}</span>
+                        <span class="lgu-sub-text">${escapeHTML(lgu.mayorName || lgu.headName)}</span>
                     </div>
                     <button class="view-btn" onclick="openDetail('${lgu.id}')">
                         <i data-lucide="eye"></i> VIEW
@@ -252,45 +206,55 @@
             lucide.createIcons();
         }
 
-        // 3. Search Logic
+        // 3. Search Filter
         document.getElementById('lguSearchInput').oninput = (e) => {
             const term = e.target.value.toLowerCase().trim();
             const filtered = masterLguList.filter(l => 
                 (l.municipality && l.municipality.toLowerCase().includes(term)) || 
-                (l.headName && l.headName.toLowerCase().includes(term))
+                (l.mayorName && l.mayorName.toLowerCase().includes(term))
             );
             renderTable(filtered);
         };
 
-        // 4. Detail Pane & Project Bridge
+        // 4. Modal Detail + Bridge Logic
         window.openDetail = function(id) {
             const lgu = masterLguList.find(l => l.id === id);
             
-            document.getElementById('detMuni').innerText = lgu.municipality;
-            document.getElementById('detMayor').innerText = lgu.headName;
-            document.getElementById('detContact').innerText = lgu.contact;
-            document.getElementById('detProvince').innerText = lgu.province;
-            document.getElementById('detRegion').innerText = lgu.region;
+            // Text values (Uses innerText for extra security)
+            document.getElementById('detMuni').innerText = lgu.municipality || "---";
+            document.getElementById('detMayor').innerText = lgu.mayorName || "---";
+            document.getElementById('detProvince').innerText = lgu.province || "---";
+            document.getElementById('detContact').innerText = lgu.contact || "---";
+            document.getElementById('detRegion').innerText = lgu.region || "---";
 
-            // Fetch linked projects automatically
-            const q = query(collection(db, "projects"), where("municipality", "==", lgu.municipality));
-            onSnapshot(q, (snapshot) => {
-                const container = document.getElementById('associatedProjects');
-                const projects = snapshot.docs.map(doc => doc.data());
-
-                if (projects.length > 0) {
-                    container.innerHTML = projects.map(p => `
-                        <div class="project-card">
-                            <div>
-                                <span style="display:block; font-weight:800; color:#1e293b;">${p.title}</span>
-                                <span style="font-size:10px; color:#94a3b8; font-weight:700; text-transform:uppercase;">Infrastructure Maintenance</span>
-                            </div>
-                            <span style="font-size:9px; font-weight:900; background:#eeefff; color:#5d5fef; padding:5px 10px; border-radius:10px; text-transform:uppercase;">${p.status}</span>
+            // Bridge A: Fetch Engineers for this Municipality
+            const qEng = query(collection(db, "engineers"), where("municipality", "==", lgu.municipality));
+            onSnapshot(qEng, (snap) => {
+                const container = document.getElementById('associatedEngineers');
+                const engineers = snap.docs.map(doc => doc.data());
+                container.innerHTML = engineers.length > 0 ? engineers.map(e => `
+                    <div class="item-card">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <div style="width:32px; height:32px; background:#f0fdf4; color:#16a34a; border-radius:10px; display:flex; align-items:center; justify-content:center;"><i data-lucide="shield-check" style="width:16px;"></i></div>
+                            <div><span style="display:block; font-weight:800; color:#1e293b;">${escapeHTML(e.fullName)}</span><span style="font-size:10px; color:#94a3b8; font-weight:700;">${escapeHTML(e.specialization)}</span></div>
                         </div>
-                    `).join('');
-                } else {
-                    container.innerHTML = `<p style="text-align:center; color:#94a3b8; font-size:12px; font-style:italic; padding:20px; background:#f8fafc; border-radius:14px;">No projects recorded for this area.</p>`;
-                }
+                        <span class="badge" style="background:#dcfce7; color:#16a34a;">${escapeHTML(e.licenseNo)}</span>
+                    </div>
+                `).join('') : '<p style="text-align:center; color:#94a3b8; font-size:11px; padding:10px; font-style:italic;">No engineers assigned to this area.</p>';
+                lucide.createIcons();
+            });
+
+            // Bridge B: Fetch Projects for this Municipality
+            const qProj = query(collection(db, "projects"), where("municipality", "==", lgu.municipality));
+            onSnapshot(qProj, (snap) => {
+                const container = document.getElementById('associatedProjects');
+                const projects = snap.docs.map(doc => doc.data());
+                container.innerHTML = projects.length > 0 ? projects.map(p => `
+                    <div class="item-card">
+                        <div><span style="display:block; font-weight:800; color:#1e293b;">${escapeHTML(p.title)}</span><span style="font-size:10px; color:#94a3b8; font-weight:700;">MAINTENANCE PROJECT</span></div>
+                        <span class="badge">${escapeHTML(p.status)}</span>
+                    </div>
+                `).join('') : '<p style="text-align:center; color:#94a3b8; font-size:11px; padding:10px; font-style:italic;">No project records found.</p>';
             });
 
             document.getElementById('lguModal').style.display = 'flex';
