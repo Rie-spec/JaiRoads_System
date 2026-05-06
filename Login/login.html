@@ -1,70 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #EFF1F4;
-        }
-
-        .box {
-            background: #FEFEFE;
-            padding: 30px;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #5C5FED;
-        }
-
-        .error {
-            color: red;
-            margin-bottom: 10px;
-        }
-    </style>
+  <link rel="stylesheet" href="login.css"/>
 </head>
+
 <body>
-<div class="box">
+
+<div class="container">
+
+  <!-- LEFT SIDE (LOGIN FORM) -->
+  <div class="left-panel">
+
+    <div class="logo">
+      <h2>JAIROADS</h2>
+    </div>
+
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Enter your credentials to access the console</p>
+
     <form id="loginForm">
-        <h2>Login</h2>
+      <p id="message"></p>
 
-        <p class="error" id="message"></p>
+      <label>USERNAME</label>
+      <input type="text" id="username" placeholder="Enter username" required>
 
-        <input type="text" id="username" placeholder="Username" required><br><br>
-        <input type="password" id="password" placeholder="Password" required><br><br>
+      <label>PASSWORD</label>
+      <input type="password" id="password" placeholder="Enter password" required>
 
-        <button type="submit">Login</button>
+      <button type="submit">Sign In →</button>
     </form>
+
+    <p class="footer-text">
+      Don’t have an account? <a href="#">Contact system admin</a>
+    </p>
+
+  </div>
+
+  <!-- RIGHT SIDE (SLIDESHOW BACKGROUND) -->
+  <div class="right-panel">
+
+    <div class="slideshow">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+    </div>
+
+    <div class="overlay-content">
+      <span class="tag">INFRASTRUCTURE MONITORING</span>
+
+      <h1>Smart Road Maintenance & Infrastructure Tracking</h1>
+
+      <p>
+        Digitalizing the provincial road network projects for real-time monitoring and efficient resource management.
+      </p>
+
+      <div class="stats">
+        <div>
+          <h2>500+</h2>
+          <span>Projects Tracking</span>
+        </div>
+
+        <div>
+          <h2>11</h2>
+          <span>LGUs Integrated</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 <script type="module" src="login.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Engineer Request</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-card">
+        <div class="auth-title">Create Engineer Request</div>
+        <form id="registerForm">
+            <p id="message" aria-live="polite"></p>
+
+            <input type="text" id="username" placeholder="Username" required><br><br>
+            <input type="email" id="email" placeholder="Email" required><br><br>
+            <input type="text" id="lguId" placeholder="LGU ID" required><br><br>
+            <input type="text" id="positionRank" placeholder="Position / Rank" required><br><br>
+            <input type="text" id="municipality" placeholder="Municipality" required><br><br>
+
+            <button type="submit">Save Request</button>
+        </form>
+        <div class="auth-footer">
+            Admin-controlled account provisioning system
+        </div>
+    </div>
+  <script type="module" src="register-engineer.js"></script>
+</body>
+</html>

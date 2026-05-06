@@ -1,81 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #EFF1F4;
-        }
-
-        .box {
-            background: #FEFEFE;
-            padding: 30px;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #5C5FED;
-        }
-
-        .error {
-            color: red;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-<div class="box">
-<form id="registerForm">
-    <h2>Register</h2>
+<div class="auth-card">
+  <div class="auth-title">Create Account</div>
 
-    <p class="error" id="message" aria-live="polite"></p>
+    <p id="message"></p>
+    <form id="registerForm">
+        <p id="message" aria-live="polite"></p>
 
-    <input type="text" id="username" placeholder="Username" required autocomplete="username"><br><br>
-    <input type="email" id="email" placeholder="Email" required autocomplete="email"><br><br>
-    <input type="password" id="password" placeholder="Password" required autocomplete="new-password"><br><br>
+        <input type="text" id="username" placeholder="Username" required><br><br>
+        <input type="email" id="email" placeholder="Email" required><br><br>
+        <input type="password" id="password" placeholder="Password" required><br><br>
 
-    <select id="role" required>
-        <option value="" disabled selected>Select role</option>
-        <option value="engineer">Engineer</option>
-        <option value="admin">Admin</option>
-    </select>
+        <button type="submit">Create Account</button>
+    </form>
 
-    <br><br>
-
-    <button type="submit">Register</button>
-</form>
+    <div class="auth-footer">
+    Contact system admin if you don’t have access
+    </div>
 </div>
-
-<script type="module" src="register.js"></script>
+  <script type="module" src="register.js"></script>
 </body>
 </html>
